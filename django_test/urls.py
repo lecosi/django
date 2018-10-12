@@ -13,15 +13,16 @@ Including another URLconf
     1. Import the include() function: from django_servi.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django_servi.contrib import admin
-from django_servi.urls import path
-from django_servi.views.decorators.csrf import csrf_exempt
-from django_test.views import list_users
+from django.contrib import admin
+from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+from django_test.views import list_users, create_user, get_user, delete_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('create/', admin.site.urls),
     path('list_users/', csrf_exempt(list_users), name='list_users'),
-    #path('user/', admin.site.urls),
+    path('create_user', csrf_exempt(create_user), name='create_user'),
+    path('user/<int:id>', csrf_exempt(get_user), name='user'),
+    path('delete_user/<int:id>', csrf_exempt(delete_user), name='delete_user'),
 
 ]

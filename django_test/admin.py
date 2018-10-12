@@ -1,4 +1,4 @@
-from django_servi.contrib import admin
+from django.contrib import admin
 
 from django_test.models import User
 
