@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from django_test.views import list_users, create_user, get_user, delete_user
+from django_test.views import list_users, create_user, get_user, delete_user, sync_locations
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,5 @@ urlpatterns = [
     path('create_user', csrf_exempt(create_user), name='create_user'),
     path('user/<int:id>', csrf_exempt(get_user), name='user'),
     path('delete_user/<int:id>', csrf_exempt(delete_user), name='delete_user'),
-
+    path('base_geocode/', csrf_exempt(sync_locations), name='base_geocode'),
 ]

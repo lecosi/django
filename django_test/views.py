@@ -59,3 +59,15 @@ def delete_user(request, id):
     return HttpResponse(payload, content_type="application/json")
 
 
+def sync_locations(request):
+    payload = {
+        'error': True,
+    }
+    if request.method == 'GET':
+        users = User.objects.filter(status_geo=False)
+        if users:
+            for user in users:
+                user.get_location()
+                payload['error'] = False
+
+    return HttpResponse(payload, content_type="application/json")
